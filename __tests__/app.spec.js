@@ -17,7 +17,7 @@ describe("Mon API CRUD", () => {
     expect(JSON.parse(res.text)).toMatchObject(mapToObj(db.memoryDb));
   });
 
-  it.skip("POST /api/names doit créer un nouvel objet en BDD et le retourner", async () => {
+  it("POST /api/names doit créer un nouvel objet en BDD et le retourner", async () => {
     let insertion = { name: "Insertion" }
     let id = db.id
     const res = await request(app)
