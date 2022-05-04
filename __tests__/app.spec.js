@@ -9,11 +9,11 @@ const mapToObj = (m) => {
 };
 
 describe("Mon API CRUD", () => {
-  it.skip("GET /api/names retourne JSON de la database", async () => {
+  it("GET /api/names retourne JSON de la database", async () => {
     const res = await request(app)
       .get("/api/names")
       .expect(200)
-      .expect("content-type", "application/json");
+      .expect("content-type", /json/);
     expect(JSON.parse(res.text)).toMatchObject(mapToObj(db.memoryDb));
   });
 
@@ -24,7 +24,7 @@ describe("Mon API CRUD", () => {
       .post("/api/names")
       .send(insertion)
       .expect(201)
-      .expect('content-type', 'application/json')
+      .expect('content-type', /json/)
 
     expect(db.memoryDb.get(id)).toMatchObject(insertion);
   });
@@ -39,11 +39,11 @@ describe("Mon API CRUD", () => {
     expect(modification).toMatchObject(db.memoryDb.get(1));
   });
 
-  it.skip("GET /api/name/:id retourne le JSON de l'objet correspondant en DB", async () => {
+  it("GET /api/name/:id retourne le JSON de l'objet correspondant en DB", async () => {
     const res = await request(app)
       .get("/api/name/1")
         .expect(200)
-        .expect("content-type", "application/json");
+        .expect("content-type", /json/);
     expect(JSON.parse(res.text)).toMatchObject(db.memoryDb.get(1));
   });
 });
