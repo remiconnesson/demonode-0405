@@ -1,4 +1,4 @@
-const http = require("http");
+const express = require("express");
 const fs = require("fs");
 const path = require("path");
 const db = require("./db");
@@ -9,6 +9,8 @@ const mapToObj = (m) => {
     return obj;
   }, {});
 };
+
+const app = express();
 
 const server = http.createServer((req, res) => {
   try {
@@ -114,4 +116,4 @@ const server = http.createServer((req, res) => {
   }
 });
 
-module.exports = server;
+module.exports = app;
