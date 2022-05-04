@@ -26,8 +26,7 @@ app.get('/api/name/:id', (req, res) => {
 app.post('/api/names', (req, res) => {
   const payload = req.body;
   db.memoryDb.set(db['id']++, payload);
-  // res.set({'content-type':'application/json'});
-  res.json(payload).sendStatus(201);
+  res.status(201).json(payload);
 })
 
 module.exports = app;
